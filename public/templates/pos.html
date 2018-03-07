@@ -1,14 +1,15 @@
 
 <div class="text-center">
-	<span class="lead">Total</span> 
+	<span class="lead">Total</span>
 	<br/>
 	<span class="text-success checkout-total-price">
-		$<span odometer="cart.total"></span>
+		<span odometer="cart.total" odometer-options="{duration: 50}"></span>
 	</span>
-	
-	<checkout 
-		cart-total="cart.total" 
-		print-receipt="printReceipt(payment)">
+
+	<checkout
+		cart-total="cart.total"
+		print-receipt="printReceipt(payment)"
+		cart="cart">
 	</checkout>
 </div>
 
@@ -20,10 +21,9 @@
 			</td>
 		</tr>
 		<tr class="titles">
-			<th>Name</th>
-			<th>Price</th>
-			<th>Quantity</th>
-			<th>Tax</th>
+			<th>Nume</th>
+			<th>Preț</th>
+			<th>Cantitate</th>
 			<th>Total</th>
 			<th></th>
 		</tr>
@@ -31,15 +31,15 @@
 	<tbody>
 		<tr ng-repeat="product in cart.products track by $index">
 			<td class="col-md-2"> {{ product.name }} </td>
-			<td class="col-md-1"> {{ product.price | currency }} </td>
-			<td class="col-md-2"> 
+			<td class="col-md-1"> {{ product.price | currency:"" }} </td>
+			<td class="col-md-2">
 
 				<button class="btn btn-sm pull-left" ng-click="removeQuantity(product)">
 					<i class="glyphicon glyphicon-minus"></i>
 				</button>
 
 				<div class="col-md-6">
-					<input 
+					<input
 						type="number"
 						class=""
 						step="1"
@@ -54,11 +54,8 @@
 				</button>
 
 			</td>
-			<td class="col-md-2"> 
-				{{  product.tax_percent * product.quantity * product.price | currency }} 
-			</td>
 			<td class="col-md-2">
-				{{ (product.tax_percent * product.quantity * product.price) + ( product.price * product.quantity) | currency }}
+				{{ product.price * product.quantity | currency:"" }}
 			</td>
 			<td class="col-md-2">
 				<button class="btn btn-danger" ng-click="removeProductFromCart($index)">
@@ -69,5 +66,5 @@
 		<tr ng-if="!cart.products.length">
 			<td colspan="6">Scan products or add unlisted item above.</td>
 		</tr>
-	</tbody>	
+	</tbody>
 </table>

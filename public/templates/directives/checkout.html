@@ -1,9 +1,8 @@
-<button 
+<button
   class="btn btn-success lead"
-  id="checkoutButton" 
-  ng-click="focusPayment()" 
-  ng-disabled="cartTotal === 0" 
-  data-toggle="modal" 
+  id="checkoutButton"
+  ng-disabled="cartTotal === 0"
+  data-toggle="modal"
   data-target="#checkoutModal">
     <i class="glyphicon glyphicon-shopping-cart"></i>
     <br/>
@@ -40,43 +39,122 @@
         <h4 class="modal-title" id="myModalLabel">Checkout</h4>
       </div>
       <div class="modal-body">
-        
+
         <div ng-hide="transactionComplete" class="lead">
-          <h3>Total: <span class="text-danger">{{ cartTotal | currency }}</span></h3>
-          <h3>Change Due: <span class="text-success">{{ getChangeDue() | currency }}</span></h3>
-        
+          <h3>Total: <span class="text-danger">{{ cartTotal | currency:"" }}</span></h3>
+          <h3>Restul: <span class="text-success">{{ getChangeDue() | currency:"" }}</span></h3>
+
           <form class="form-horizontal" name="checkoutForm" ng-submit="checkoutForm.$valid && print()">
 
             <div class="form-group" ng-class="{ 'has-error': checkoutForm.payment.$error.required }">
               <div class="input-group">
                 <div class="input-group-addon">$</div>
-                <input type="number" 
-                  id="checkoutPaymentAmount" 
-                  class="form-control input-lg" 
-                  name="payment" 
-                  step="any" 
-                  min="0" 
-                  ng-model="paymentAmount" 
+                <input type="number"
+                  id="checkoutPaymentAmount"
+                  class="form-control input-lg"
+                  name="payment"
+                  step="any"
+                  min="0"
+                  ng-model="paymentAmount"
                   required/>
               </div>
-            </div>  
+            </div>
 
-            <p class="text-danger" ng-show="checkoutForm.payment.$error.required && checkoutForm.$dirty">Enter payment amount.</p>
+            <p class="text-danger" ng-show="checkoutForm.payment.$error.required && checkoutForm.$dirty">Introduceți suma încasată.</p>
 
             <button type="submit" class="btn btn-primary btn-lg lead" ng-disabled="checkoutForm.payment.$error && paymentAmount < cartTotal">
-              Print Receipt
+              Tipărește
             </button>
 
           </form>
         </div>
 
         <div ng-show="transactionComplete" class="lead" ng-if="checkoutForm.payment">
-          <h3>Total: <span class="text-danger">{{ previousCartInfo.total | currency }}</span></h3>
-          <h3>Change Due: <span class="text-success">{{ previousCartInfo.paymentAmount - previousCartInfo.total | currency }}</span></h3>
-          <button ng-click="closeModal()" class="btn btn-default btn-lg" type="button">Close</button>
+          <div class="container" id="printSection">
+      			<div class="row">
+
+      		<div id="receipt_wrapper" style="font-size:16px">
+      			<div id="receipt_header">
+      							<div id="company_name" class="align-baseline">
+      						<img id="image" src="http://localhost/opensourcepos/public/uploads/company_logo1.jpg" alt="company_logo">
+      						<div id="company_name" class="align-text-top">Cafenea la Vila</div>
+      					</div>
+
+      				<div id="company_address">s. Bulboaca</div>
+      				<div id="company_phone">079223096</div>
+      				<div id="sale_time">02/19/2018 14:04:39</div>
+      			</div>
+
+      			<div id="receipt_general_info">
+
+
+
+      				<div id="employee">Vinzator: Adrian M</div>
+      			</div>
+
+      			<table id="receipt_items">
+      				<tbody><tr>
+      					<th style="width:40%;">Desc.</th>
+      					<th style="width:20%;">Pret</th>
+      					<th style="width:20%;">Cantitate</th>
+      					<th style="width:20%;" class="total-value">Total</th>
+      				</tr>
+      							<tr ng-repeat="product in cart.products track by $index">
+      						<td>{{ product.name }}</td>
+      						<td>{{ product.price | currency:"" }}</td>
+      						<td>{{ product.quantity }}</td>
+      						<td class="total-value">{{ product.price * product.quantity | currency:"" }}</td>
+      					</tr>
+      					<tr>
+      													</tr>
+
+
+
+      				<tr>
+      				</tr>
+
+      						<tr>
+      					<td colspan="3" style="text-align:right;border-top: 2px solid black;">Total</td>
+      					<td style="text-align:right;border-top: 2px solid black;">{{cart.total}}</td>
+      				</tr>
+
+      				<tr>
+      					<td colspan="4">&nbsp;</td>
+      				</tr>
+
+      							<tr>
+      						<td colspan="3" style="text-align:right;">Numerar </td>
+      						<td class="total-value">{{ paymentAmount }}</td>
+      					</tr>
+
+      				<tr>
+      					<td colspan="4">&nbsp;</td>
+      				</tr>
+
+      						<tr>
+      					<td colspan="3" style="text-align:right;"> Restul </td>
+      					<td class="total-value">{{ getChangeDue() }}</td>
+      				</tr>
+      			</tbody></table>
+
+      			</div>
+      		</div>
+
+      				</div>
+
+              <div ng-show="transactionComplete" class="lead" ng-if="checkoutForm.payment">
+                <h3>Total: <span class="text-danger">{{ previousCartInfo.total | currency:"" }}</span></h3>
+                <h3>Restul: <span class="text-success">{{ previousCartInfo.paymentAmount - previousCartInfo.total | currency:"" }}</span></h3>
+                <button ng-click="closeModal()" class="btn btn-default btn-lg" type="button">Închide</button>
+              </div>
+      			</div>
         </div>
 
       </div>
     </div>
   </div>
 </div>
+
+<script>
+
+</script>

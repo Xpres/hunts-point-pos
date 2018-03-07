@@ -1,13 +1,13 @@
 var express = require('express'),
 app 		= require('express')(),
-server 		= app.listen(80),
+server 		= app.listen(9000),
 io 			= require('socket.io')(server),
 path 		= require('path'),
 bodyParser 	= require('body-parser'),
 publicPath 	= '/../public/',
 liveCart
 
-console.log('Hunts Point POS')
+console.log('POS')
 console.log('Server started')
 
 app.use(express.static(path.resolve(__dirname + publicPath)))
@@ -36,10 +36,10 @@ io.on('connection', function (socket) {
 
 	// when the cart data is updated by the POS
 	socket.on('update-live-cart', function (cartData) {
-		
+
 		// keep track of it
 		liveCart = cartData
-		
+
 		// broadcast updated live cart to all websocket clients
 		socket.broadcast.emit('update-live-cart-display', liveCart)
 	})

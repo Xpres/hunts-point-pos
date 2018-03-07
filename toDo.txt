@@ -1,0 +1,31 @@
+1. Live only POS tab, remove others, for seller.
+2. Add info button (keyword i (shorcut)), for shorcut descriptions and all products with barcode id.(on select insert in card?).
+3. Remove useless thinks, like : tax, unlisted items buttons, total animation, dolar sign.
+4. Translate.
+5. Finish printing template(fond size biger as posible(to test)).
+
+6. Offline mode, server run on sellers laptop, make some security limitation(windows).
+
+
+-----Additional functionality-------- very useful-----shorcuts:
+space-to edit quantity, also automaticaly focus on quantity after product inserted, it is ovious flow.
+backspace(or ..- to delete the item(product), selected row.
+?? tab or arrows(up//down) to go over rows.
+
+
+----Final----
+Clean up code, as mach as posible, soket.io (to remove? or comment out.)
+
+Test:
+1.Test kitchen mode(printing)
+
+
+-----Aditional advance functions--------
+1. Security: autentification, multiple users and rights.
+2. Additional statistical views.
+3. Add fiscal printer option.(duble check with max amount restriction)
+
+
+
+Optional Code Cleanup
+1. Clean up odometer library.

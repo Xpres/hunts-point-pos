@@ -43,7 +43,7 @@
 						<td class="col-md-2"> 
 							<a href="#/transaction/{{ transaction._id }}">{{ transaction.date | date:'short' }}</a>
 						</td>
-						<td class="col-md-2"> {{ transaction.total | currency }} </td>
+						<td class="col-md-2"> {{ transaction.total | currency:"" }} </td>
 					</tr>
 				</tbody>
 			</table>

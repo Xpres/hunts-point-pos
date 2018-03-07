@@ -23,8 +23,8 @@
 	<tbody>
 		<tr ng-repeat="transaction in transactions track by $index | orderBy: getTransactionDate(transaction):reverse">
 			<td> {{ transaction.date | date:'short' }} </td>
-			<td> {{ transaction.total | currency }} </td>
-			<td> {{ transaction.payment | currency }}</td>
+			<td> {{ transaction.total | currency:"" }} </td>
+			<td> {{ transaction.payment | currency:"" }}</td>
 			<td> {{ getNumberOfProducts(transaction.products) }} </td>
 			<td>
 				<a class="btn btn-info" href="#/transaction/{{ transaction._id }}">

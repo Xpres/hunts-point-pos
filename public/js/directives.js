@@ -13,7 +13,7 @@ pos.directive('navMenu',function ($location) {
       scope.isActive = function (url) {
         if (url === 'transactions')
           url = 'transaction';
-        
+
         url = '/' + url;
         return $location.path().indexOf(url) !== -1;
       }
@@ -40,7 +40,7 @@ pos.directive('productForm',function ($location) {
 
       scope.tabOnEnter = function ($event) {
         if ($event.keyCode === 13) {
-          $name.select(); 
+          $name.select();
           $event.preventDefault();
         }
       };
@@ -62,7 +62,7 @@ pos.directive('addManualItem',function () {
     },
     templateUrl: 'templates/directives/add-manual-item.html',
     link: function (scope, el) {
-      
+
       scope.add = function () {
         scope.manualItem.name = "----";
         scope.addItem({item: scope.manualItem});
@@ -80,23 +80,36 @@ pos.directive('checkout', function (Settings) {
     restrict: 'E',
     scope: {
       printReceipt: '&',
-      cartTotal: '='
+      cartTotal: '=',
+      cart: '='
     },
     templateUrl: 'templates/directives/checkout.html',
     link: function (scope, el) {
-      
+
       $paymentField = el.find('form').eq(0).find('input').eq(0);
-      
+
+      console.log('link  checkout ');
+      $('#checkoutModal').on('shown.bs.modal', function () {
+        $('#checkoutPaymentAmount').trigger('focus');
+        console.log('trigger focus!');
+      });
+
+      $('#checkoutModal').on('hidden.bs.modal', function (e) {
+        scope.cleanModal();
+        console.log('cleanModal call!');
+      });
+
       scope.focusPayment = function () {
+          console.log('focusPayment ');
         $('#checkoutPaymentAmount').select();
       };
-      
+
       scope.getChangeDue = function () {
         if (scope.paymentAmount && scope.paymentAmount > scope.cartTotal) {
           var change =  parseFloat(scope.paymentAmount) - parseFloat(scope.cartTotal);
           return change;
         }
-        else 
+        else
           return 0;
       };
 
@@ -112,10 +125,16 @@ pos.directive('checkout', function (Settings) {
 
         scope.printReceipt({ payment: paymentAmount });
         scope.transactionComplete = true;
+        $('.close').trigger('focus');
       };
 
       scope.closeModal = function () {
         el.find('div').eq(0).modal('hide');
+        delete scope.paymentAmount;
+        scope.transactionComplete = false;
+      };
+
+      scope.cleanModal = function () {
         delete scope.paymentAmount;
         scope.transactionComplete = false;
       };
@@ -135,11 +154,11 @@ pos.directive('receipt',function (Settings) {
     link: function (scope) {
 
       scope.backupDate = new Date();
-      
+
       Settings.get().then(function (settings) {
         scope.settings = settings;
       });
-      
+
     }
   };
 

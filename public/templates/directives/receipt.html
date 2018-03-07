@@ -22,10 +22,10 @@
             </td>
             <td> 
               <span>
-                {{ ( product.price * product.quantity ) | currency }} 
+                {{ ( product.price * product.quantity ) | currency:"" }} 
               </span>
               <br/> 
-              <small class="small-text"><em>({{ product.price | currency }} each)</em></small>
+              <small class="small-text"><em>({{ product.price | currency:"" }} each)</em></small>
             </td>
           </tr>
         </tbody>
@@ -34,22 +34,22 @@
           <tr>
             <td></td>
             <td>Tax</td>
-            <td> {{ transaction.total_tax | currency }} </td>
+            <td> {{ transaction.total_tax | currency:"" }} </td>
           </tr>
           <tr class="total">
             <td></td>
             <td>Total</td>
-            <td> {{ transaction.total | currency }} </td>
+            <td> {{ transaction.total | currency:"" }} </td>
           </tr>
           <tr>
             <td></td>
             <td>Payment</td>
-            <td> {{ transaction.payment | currency }} </td>
+            <td> {{ transaction.payment | currency:"" }} </td>
           </tr>
           <tr class="lead">
             <td></td>
             <td>Change</td>
-            <td> {{ transaction.payment - transaction.total | currency }} </td>
+            <td> {{ transaction.payment - transaction.total | currency:"" }} </td>
           </tr>
         </tbody>
 
