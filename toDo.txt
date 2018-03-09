@@ -6,6 +6,8 @@
 
 6. Offline mode, server run on sellers laptop, make some security limitation(windows).
 
+7. Remove google fonts
+8. Add barcode input fild, to pos view., also search by name ?if possible
 
 -----Additional functionality-------- very useful-----shorcuts:
 space-to edit quantity, also automaticaly focus on quantity after product inserted, it is ovious flow.

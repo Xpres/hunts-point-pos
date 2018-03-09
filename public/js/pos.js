@@ -128,6 +128,17 @@ pos.controller('posController', function ($scope, $location, Inventory, Transact
     console.log('barcodeHandler: ' + String.fromCharCode(e.which) + e.which);
       $scope.barcodeNotFoundError = false;
 
+      //if a input is focused, do not register products
+      if ($('input').is(':focus')){
+        var ival = $(document.activeElement).val();
+        if (e.which === 13) {
+          if (ival == "" || ival.startsWith("0"))
+            return;
+          $(document.activeElement).blur();
+        }
+        return;
+      }
+      //if - hide checkout
       if (e.which === 45) {
         $('#checkoutModal').modal('hide');
         return;
@@ -143,7 +154,6 @@ pos.controller('posController', function ($scope, $location, Inventory, Transact
       if ($('#checkoutModal').is(':visible')){
         return;
       }
-
 
       // if enter is pressed
       if (e.which === 13) {
@@ -223,8 +233,9 @@ pos.controller('posController', function ($scope, $location, Inventory, Transact
     var product = _.find($scope.cart.products, { barcode: barcode.toString() });
 
     if (product) {
-      product.quantity = product.quantity + 1;
+      //product.quantity = product.quantity + 1;
       $scope.updateCartTotals();
+      $("tr#b" + product.barcode +" input").select();
     }
 
     return product;
@@ -236,7 +247,7 @@ pos.controller('posController', function ($scope, $location, Inventory, Transact
     else {
       var product = angular.copy(_.find($scope.inventory, { barcode: barcode.toString() }));
       product = $scope.cleanProduct(product);
-      product.quantity = 1;
+      //product.quantity = 1;
       addProductAndUpdateCart(product);
     }
   };

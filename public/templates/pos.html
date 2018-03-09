@@ -26,10 +26,11 @@
 			<th>Cantitate</th>
 			<th>Total</th>
 			<th></th>
+			<th>Barcode</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="product in cart.products track by $index">
+		<tr ng-repeat="product in cart.products track by $index" id="{{ 'b' + product.barcode }}">
 			<td class="col-md-2"> {{ product.name }} </td>
 			<td class="col-md-1"> {{ product.price | currency:"" }} </td>
 			<td class="col-md-2">
@@ -46,7 +47,7 @@
 						min="1"
 						ng-model="product.quantity"
 						ng-change="updateCartTotals()"
-						required/>
+						required autofocus/>
 				</div>
 
 				<button class="btn btn-sm pull-right" ng-click="addQuantity(product)">
@@ -62,9 +63,13 @@
 					<i class="glyphicon glyphicon-trash"></i>
 				</button>
 			</td>
+			<td class="col-md-2">
+				{{ product.barcode }}
+			</td>
 		</tr>
 		<tr ng-if="!cart.products.length">
 			<td colspan="6">Scan products or add unlisted item above.</td>
 		</tr>
+	</td>
 	</tbody>
 </table>

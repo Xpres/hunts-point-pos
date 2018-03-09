@@ -23,6 +23,17 @@ pos.directive('navMenu',function ($location) {
 
 });
 
+pos.directive('autofocus', ['$timeout', function($timeout) {
+  return {
+    restrict: 'A',
+    link : function($scope, $element) {
+      $timeout(function() {
+        $element[0].focus();
+      });
+    }
+  }
+}]);
+
 pos.directive('productForm',function ($location) {
   return {
     restrict: 'E',
