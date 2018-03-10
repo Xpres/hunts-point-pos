@@ -160,3 +160,7 @@ ul.nav-menu li a h3 {
 	font-size: 35px;
 	letter-spacing: 3px;
 }
+
+.btn-space {
+    margin-right: 5px;
+}

@@ -23,16 +23,19 @@ pos.directive('navMenu',function ($location) {
 
 });
 
-pos.directive('autofocus', ['$timeout', function($timeout) {
+pos.directive('infoInstructions',function () {
   return {
-    restrict: 'A',
-    link : function($scope, $element) {
-      $timeout(function() {
-        $element[0].focus();
-      });
-    }
-  }
-}]);
+    restrict: 'E',
+    templateUrl: 'templates/directives/info-instructions.html'
+  };
+});
+
+pos.directive('infoProducts',function () {
+  return {
+    restrict: 'E',
+    templateUrl: 'templates/directives/info-products.html'
+  };
+});
 
 pos.directive('productForm',function ($location) {
   return {

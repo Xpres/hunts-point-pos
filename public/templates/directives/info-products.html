@@ -1,0 +1,49 @@
+<button class="btn btn-default btn-sm btn-space" data-toggle="modal" data-target="#myModal2">
+	<i class="glyphicon glyphicon-info-sign"></i> Produse (p)
+</button>
+
+<style>
+.info-dialog-modal2{
+    overflow-y: initial !important
+}
+.info-modal2{
+    height: 1000px;
+    overflow-y: auto;
+}
+.myModal2{
+	max-width: 50%;
+}
+</style>
+<!-- Modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+  <div class="modal-dialog info-dialog-modal2" modal-lg>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Închide"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel2">Toate produsele</h4>
+      </div>
+      <div class="modal-body info-modal2">
+					<table class="table">
+						<thead class="thead-dark">
+							<tr>
+								<th># Cod</th>
+								<th>Nume</th>
+								<th>Preț</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="product in inventory | orderBy:'barcode'" id="{{ 'b' + product.barcode }}">
+							  <td> {{ product.barcode }} </td>
+							  <td > {{ product.name }} </td>
+							  <td > {{ product.price | currency:"" }} </td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Închide</button>
+      </div>
+    </div>
+  </div>
+</div>

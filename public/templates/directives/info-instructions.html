@@ -1,0 +1,56 @@
+<button class="btn btn-default btn-sm btn-space" data-toggle="modal" data-target="#myModal">
+	<i class="glyphicon glyphicon-info-sign"></i> Info (i)
+</button>
+
+<style>
+.info-dialog-modal{
+    overflow-y: initial !important
+}
+.info-modal{
+    overflow-y: auto;
+}
+.myModal{
+	max-width: 50%;
+}
+</style>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog info-dialog-modal" modal-lg>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Închide"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Instrucțiuni</h4>
+      </div>
+      <div class="modal-body info-modal">
+				<div>
+					Această aplicatie a fost gîndită să fie utilizată și complet fară șoricel. Pentru asta se utilizează shortcut-urile petnru tastatură:
+					<table class="table">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th>Tastă</th>
+					      <th>Descriere</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <td>i</td>
+					      <td>Fereastra cu instructiuni de utilizare si comenzi</td>
+					    </tr>
+					    <tr>
+					      <td>p</td>
+					      <td>Fereastra cu toate produsele</td>
+					    </tr>
+					    <tr>
+					      <td>c</td>
+					      <td>Termina comanda produselor.</td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Închide</button>
+      </div>
+    </div>
+  </div>
+</div>
