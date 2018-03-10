@@ -138,6 +138,19 @@ pos.controller('posController', function ($scope, $location, Inventory, Transact
         }
         return;
       }
+
+      //if i toggle info modal
+      if (e.which === 105) {
+        $('#myModal').modal('toggle');
+        return;
+      }
+
+      //if p toggle info modal
+      if (e.which === 112) {
+        $('#myModal2').modal('toggle');
+        return;
+      }
+
       //if - hide checkout
       if (e.which === 45) {
         $('#checkoutModal').modal('hide');
