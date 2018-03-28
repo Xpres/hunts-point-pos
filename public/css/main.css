@@ -10,6 +10,11 @@
     #printSection, #printSection * {
         visibility:visible;
     }
+    #printSection {
+      position: absolute;
+      left: 0;
+      top: 0;
+     }
 }
 
 body {
