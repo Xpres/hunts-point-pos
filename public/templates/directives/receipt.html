@@ -1,9 +1,9 @@
 <div>
-  
+
   <div class="panel panel-primary">
-    
+
     <div class="panel-heading text-center lead">{{ transaction.date || backupDate | date:'medium' }}</div>
-    
+
     <table class="receipt table table-hover">
         <thead>
           <tr class="small">
@@ -15,16 +15,16 @@
         <tbody>
           <tr ng-repeat="product in transaction.products">
             <td> {{ product.quantity }} </td>
-            <td> 
-              <a href="#/inventory/product/{{ product._id }}"> 
-                {{ product.name }} 
-              </a> 
+            <td>
+              <a href="#/inventory/product/{{ product._id }}">
+                {{ product.name }}
+              </a>
             </td>
-            <td> 
+            <td>
               <span>
-                {{ ( product.price * product.quantity ) | currency:"" }} 
+                {{ ( product.price * product.quantity ) | currency:"" }}
               </span>
-              <br/> 
+              <br/>
               <small class="small-text"><em>({{ product.price | currency:"" }} each)</em></small>
             </td>
           </tr>

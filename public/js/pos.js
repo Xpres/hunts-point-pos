@@ -127,6 +127,11 @@ pos.controller('posController', function ($scope, $location, Inventory, Transact
   function barcodeHandler (e) {
     console.log('barcodeHandler: ' + String.fromCharCode(e.which) + e.which);
       $scope.barcodeNotFoundError = false;
+      //if - hide checkout
+      if (e.which === 45) {
+        $('#checkoutModal').modal('hide');
+        return;
+      }
 
       //if a input is focused, do not register products
       if ($('input').is(':focus')){
@@ -140,22 +145,17 @@ pos.controller('posController', function ($scope, $location, Inventory, Transact
       }
 
       //if i toggle info modal
-      if (e.which === 105) {
-        $('#myModal').modal('toggle');
-        return;
-      }
+      // if (e.which === 105) {
+      //   $('#myModal').modal('toggle');
+      //   return;
+      // }
 
-      //if p toggle info modal
-      if (e.which === 112) {
+      //if * toggle products modal
+      if (e.which === 42) {
         $('#myModal2').modal('toggle');
         return;
       }
 
-      //if - hide checkout
-      if (e.which === 45) {
-        $('#checkoutModal').modal('hide');
-        return;
-      }
       // if + (checkout) is pressed
       if (e.which === 43 && $scope.cart.total !== 0) {
         $('#checkoutModal').modal('toggle');
